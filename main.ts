@@ -3,10 +3,10 @@ function daily() {
   if (threads.length === 0) {
     return;
   }
-  const labelIdsToRemove = [];
-  for (const label of Gmail.Users.Labels.list("me").labels) {
+  const labelIdsToRemove: string[] = [];
+  for (const label of Gmail.Users!.Labels!.list("me").labels!) {
     if (label.name == "daily" || label.name == "skipped") {
-      labelIdsToRemove.push(label.id);
+      labelIdsToRemove.push(label.id!);
     }
   }
   for (const thread of threads) {
@@ -14,7 +14,7 @@ function daily() {
       addLabelIds: ["INBOX"],
       removeLabelIds: ["CATEGORY_UPDATES", ...labelIdsToRemove],
     };
-    Gmail.Users.Threads.modify(labels, "me", thread.getId());
+    Gmail.Users!.Threads!.modify(labels, "me", thread.getId());
   }
 }
 
