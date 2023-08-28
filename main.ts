@@ -1,6 +1,6 @@
 function daily() {
   const threads = GmailApp.search("label:daily -in:inbox is:unread -is:muted");
-  if (threads.length === 0) {
+  if (threads.length == 0) {
     return;
   }
   const labelIdsToRemove: string[] = [];
